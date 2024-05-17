@@ -36,7 +36,7 @@ function translateLatinCharacter(lettre){
         'X':'-..-',
         'Y':'-.--',
         'Z':'--..',
-        ' ':'/'
+        ' ':' '
     }
 
     const tableaux = Object.entries(latinToMorse)   // Object.entries() renvoie un tableau pour chaque ligne d'un objet 
@@ -104,7 +104,7 @@ function translateMorseCharacter(lettre){
         '...': "S",
         '...-': "V",
         '....': "H",
-        '/':" "
+        ' ':" "
       }
     
 const tableaux2 = Object.entries(morseToLatin)   // Object.entries() renvoie un tableau pour chaque ligne d'un objet 
