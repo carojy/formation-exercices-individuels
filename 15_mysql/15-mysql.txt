@@ -1,0 +1,82 @@
+https://sqlfiddle.com/mysql/online-compiler?id=e9b3d81a-f0c5-4a81-91b2-ed290ed604f2
+
+-- PROMOS
+CREATE TABLE Promos (
+  PromoID INT AUTO_INCREMENT KEY,
+  Nom TEXT,
+  Annee INT
+);
+
+INSERT INTO Promos(Nom, Annee) VALUES ('EMMA WATSON','2024');
+INSERT INTO Promos(Nom, Annee) VALUES ('ELISABETH','2023');
+INSERT INTO Promos(Nom, Annee) VALUES ('DORYS','2022');
+
+-- CAMPUS
+CREATE TABLE Campus (
+  CampusID INT AUTO_INCREMENT KEY,
+  Ville TEXT
+);
+
+INSERT INTO Campus(Ville) VALUES ('Nantes');
+INSERT INTO Campus(Ville) VALUES ('Paris');
+INSERT INTO Campus(Ville) VALUES ('Lyon');
+
+-- ENCADRANTES
+CREATE TABLE Encadrantes (
+  EncadrantesID INT AUTO_INCREMENT KEY,
+  Nom VARCHAR(255),
+  Prenom VARCHAR(255),
+  Statut VARCHAR(255),
+  Campus_id INT,
+  FOREIGN KEY (Campus_id) REFERENCES Campus(CampusID)
+  
+);
+INSERT INTO Encadrantes(Nom, Prenom, Campus_id) VALUES ('Daphné','Lercier','1');
+INSERT INTO Encadrantes(Nom, Prenom, Campus_id) VALUES ('Anais','Sparseletto','2');
+INSERT INTO Encadrantes(Nom, Prenom, Campus_id) VALUES ('Amandine','Cousin','3');
+INSERT INTO Encadrantes(Nom, Prenom, Campus_id) VALUES ('Sarah','Trichet','1');
+INSERT INTO Encadrantes(Nom, Prenom, Campus_id) VALUES ('Chloé','Ger','2');
+INSERT INTO Encadrantes(Nom, Prenom, Campus_id) VALUES ('Clotilde','Nans','3');
+UPDATE Encadrantes SET Statut='Encadrante';
+
+-- CAMPUS APPRENANTES
+CREATE TABLE Apprenantes (
+  ID INT AUTO_INCREMENT KEY,
+  Nom VARCHAR(255),
+  Prenom VARCHAR(255),
+  Statut VARCHAR(255),
+  Promo_id INT,
+  FOREIGN KEY (Promo_id) REFERENCES Promos(PromoID),
+  Campus_id INT,
+  FOREIGN KEY (Campus_id) REFERENCES Campus(CampusID)
+);
+
+INSERT INTO Apprenantes(Nom, Prenom, Campus_id,Promo_id) VALUES ('Nadia','La Star',1,3);
+INSERT INTO Apprenantes(Nom, Prenom, Campus_id,Promo_id) VALUES ('Maud','Directrice',2,1);
+INSERT INTO Apprenantes(Nom, Prenom, Campus_id,Promo_id) VALUES ('Newgirl','Dontknow',3,1);
+INSERT INTO Apprenantes(Nom, Prenom, Campus_id,Promo_id) VALUES ('Clarisse','Berger',3,2);
+INSERT INTO Apprenantes(Nom, Prenom, Campus_id,Promo_id) VALUES ('Claire','Jeanmon',2,1);
+INSERT INTO Apprenantes(Nom, Prenom, Campus_id,Promo_id) VALUES ('Cécile','Jyr',3,2);
+INSERT INTO Apprenantes(Nom, Prenom,Campus_id,Promo_id) VALUES ('Charlotte','Jane',3,1);
+UPDATE Apprenantes SET Statut='Apprenante';
+
+-- QUERY database
+SELECT Apprenantes.Nom, Promos.Nom, Promos.Annee
+FROM Apprenantes 
+INNER JOIN Promos ON Apprenantes.Promo_id=Promos.PromoID 
+WHERE Promos.Nom = "EMMA WATSON";
+
+SELECT Encadrantes.Nom
+FROM Encadrantes 
+INNER JOIN Campus ON Encadrantes.Campus_id = Campus.CampusID 
+WHERE Campus.Ville = "Nantes";
+
+SELECT COUNT(*)
+FROM Encadrantes 
+INNER JOIN Campus ON Encadrantes.Campus_id = Campus.CampusID 
+WHERE Campus.Ville = "Nantes";
+
+SELECT Apprenantes.Nom, Promos.Annee
+FROM Apprenantes 
+INNER JOIN Promos ON Apprenantes.Promo_id = Promos.PromoID 
+WHERE Promos.Annee = "2024";
