@@ -18,14 +18,15 @@ function isValidDate(date){
 console.log(isValidDate("28/02/2024"))
 
 
+
 // ETAPE 2 : checker si la date est un palindrome
+
 function isPalindrome(date){
     let cut = date.split('/')
     let dateWithoutSlash = cut.join("")
     let separate = dateWithoutSlash.split('')
     let backwards = separate.reverse()
     let backwardsJoined = backwards.join('')
-
 
     if (dateWithoutSlash == backwardsJoined) {
         return true;
@@ -40,39 +41,21 @@ console.log(isPalindrome("11/02/2011"))
 
 
 // Etape 3 : donner les x futures dates palindroems à partir d'aujourd'hui
-// A - afficher date du jour
-// function dateOfToday(){
-//     const today = new Date()    
-//     const thisYear = today.getFullYear()
-//     const thisMonth = today.getMonth() + 1
-//     const todayNumber = today.getDate()
 
-//     if (thisMonth <10 ){
-//         return todayNumber + '/0' + thisMonth + '/' + thisYear
-//     }else{
-//         return todayNumber + '/' + thisMonth + '/' + thisYear
-//     }
-
-// }
-// console.log(dateOfToday())
-
-// B - 
-function getNextPalindromes(){
-    const today = new Date()    
-    const thisYear = today.getFullYear()
-    const thisMonth = today.getMonth() 
-    const todayNumber = today.getDate()
-
-
+function getNextPalindromes(x){
+    let today = new Date()  
+    let tableau = []
+    
+    while (tableau.length < x){
+        today.setDate(today.getDate()+1) //ajoute un jour à today
+        if (isPalindrome(today.toLocaleDateString()) == true){
+            tableau.push(today.toLocaleDateString())
+        } else {
+            today.setDate(today.getDate()+1)
+        }
+    }
+    
+    return tableau
 }
 
-getNextPalindromes()
-
-// boucle while : 
-// changelocaldatetoString => afficher au format jjmmaa
-// + 1j avec (setDate et GetDate)
-// Condition : 
-//if palindrome => push dans tableau 
-// else => ajouter 1 j
-// return tableau de dates palindromes
-
+console.log(getNextPalindromes(6))
