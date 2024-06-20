@@ -9,14 +9,17 @@ class Trip {
 
     }
 
-    isCompatible(trip){
+    #isCompatible(trip){
 
             if (this.end < trip.start){
                 return true
             } else {
                 return false
             }
+    }
 
+    getInformation(){
+        return this.#isCompatible(trip)
     }
 }
 
@@ -37,7 +40,7 @@ class Agence {
         let listeCompatible=[]
     
         for(let i = 0 ; i < list.length-1 ; i++ ){
-            if(parseTrip(list[i]).isCompatible(parseTrip(list[i+1])) == true){
+            if(parseTrip(list[i]).getInformation(parseTrip(list[i+1])) == true){
                 listeCompatible.push([list[i],list[i+1]])
             }
         }
@@ -71,7 +74,7 @@ let tripes = [
     "Morgane 10 11 8"    
     ]
 
-console.log(trip.isCompatible(autreTrip))
+console.log(trip.getInformation(autreTrip))
 
 
 let agence = new Agence()
