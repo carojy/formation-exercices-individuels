@@ -59,3 +59,6 @@ function getNextPalindromes(x){
 }
 
 console.log(getNextPalindromes(6))
+
+
+module.exports = isValidDate;
