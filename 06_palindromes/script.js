@@ -1,6 +1,11 @@
 // ETAPE 1 : check si la date est valide
 
 function isValidDate(date){
+
+    if(typeof date !== "string"){
+        return false
+    }
+    
     const cut = date.split('/')
     const day = parseInt(cut[0])
     const month = parseInt(cut[1])
@@ -8,6 +13,8 @@ function isValidDate(date){
 
     const maxDayInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
+
+    
     if ( day > 0 && day <= maxDayInMonth[month-1] && month > 0 && month < 12 && year > 999 && year < 9999 ) {
         return true;
     } else {
@@ -15,7 +22,7 @@ function isValidDate(date){
     }
 
 }
-console.log(isValidDate("28/02/2024"))
+console.log(isValidDate("28/12/2023"))
 
 
 
