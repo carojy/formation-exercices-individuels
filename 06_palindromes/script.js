@@ -65,7 +65,7 @@ function getNextPalindromes(x){
     return tableau
 }
 
-console.log(getNextPalindromes(6))
+console.log(getNextPalindromes(15))
 
 
-module.exports = isValidDate;
+module.exports = {isValidDate, isPalindrome, getNextPalindromes};
