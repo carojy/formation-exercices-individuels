@@ -61,3 +61,5 @@ function gamePlay(){
 
 gamePlay()
 
+module.exports = askNumberPlayer1;
+
