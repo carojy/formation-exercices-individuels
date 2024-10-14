@@ -1,36 +1,49 @@
-//Ressortir string en paramètre avec espaces quand lettres sont différentes
+// STEP 1
+//Return string as parameter with spaces when letters are different
 
-function decoupeChaine(string){
-    let result = ""
+function cutChain(string){
+    let resultString = ""
     
     for (let i = 1 ; i < string.length + 1 ; i++){
       if (string[i] === string[i-1]){
-        result += string[i]
+        resultString += string[i]
       }else{
-        result += string[i-1] + " "
+        resultString += string[i-1] + " "
       }
     }
     
-    return result
+    return resultString
   }
   
-  console.log(decoupeChaine("aaabbbccdddefghh"))
+  console.log(cutChain("aaabbbccdddefghh"))
   
 
-//Renvoie une string qui décrit les caractères qui constituent la chaîne en paramètre.
+// STEP 2
+//Returns a string which describes how many chars in the parameter string
 
-function decritChaine(stringADecrire){
-    let result = ""
+function decritChain(stringToDescribe){
+    let describedString = ""
+    let charNumber = 1
     
-    for (let i = 1 ; i < stringADecrire.length + 1 ; i++){
-      if (stringADecrire[i] === stringADecrire[i-1]){
-        result += stringADecrire[i]
+    for (let i = 1 ; i < stringToDescribe.length + 1 ; i++){
+      if (stringToDescribe[i] === stringToDescribe[i-1]){
+        charNumber += 1
+      
       }else{
-        result += stringADecrire[i-1] + " "
+        describedString += charNumber + stringToDescribe[i-1] + " "
+        charNumber = 1
       }
     }
     
-    return result
+    return describedString
 }
 
-console.log(decritChaine("aabbca"))
+console.log(decritChain("aggkiii"))
+
+
+// STEP 3
+// Returns the first n terms of the sequence beginning with the character carac. n and carac are passed as parameters to the function.
+
+function conwaySuite(n, char){
+
+}

@@ -1,0 +1,47 @@
+// Cut the string (successive non-identical characters are separated by a space)
+function decoupeChaine(string) {
+    let splitArray = string.split("")                           // Separate characters and place them in an array
+
+    let newArray = []                                           // newArray to retrieve the future result
+    
+    for (let i = 0; i < splitArray.length; i++) {            
+        if (splitArray[i] === splitArray[i + 1]) {
+            newArray.push(splitArray[i] + splitArray[i + 1])    // Add the same character pair to the newArray
+            i++                                                 // Skip the second character of the pair (and move on) (to avoid getting for example: ['a', 'b', 'cc', 'c', 'dd', 'd', 'e'])
+        } else {
+            newArray.push(splitArray[i])                        // Push solo characters
+        }
+    }
+    console.log(newArray)
+
+    let newString = newArray.join(" ")                  // Converts the array to a string (with spaces between each element)
+    return newString                                    // Return a string
+}
+
+let splitString = decoupeChaine("abccdde")
+console.log("Etape 1. Retour de la fonction decoupeChaine(): " + splitString)
+
+
+
+
+
+// STEP 2 (string description)
+function decritChaine(string) {
+    let splitArray = string.split("")                   // Separate characters and place them in an array
+    let result = []                                     // empty array to retrieve the future result
+    let occurrence = 1                                  // minimum occurrence is 1
+
+    for (let i = 0; i < splitArray.length; i++) {            
+        if (splitArray[i] === splitArray[i + 1]) {
+            occurrence++                                // Increment occurrence if current character is the same as next (if 'aa' -> '2a', if 'aaaa' -> '4a')
+        } else {
+            result.push(occurrence + splitArray[i])     // Add counter and character to array
+            occurrence = 1                              // Reset occurrence
+        }
+    }
+
+    let newString = result.join("")                     // Converts result (an array) to a string (with spaces between each element)
+    return newString                                    // Return a string
+}
+
+console.log("Etape 2. Retour de la fontion decritChaine(): " + decritChaine("abccdde"))
